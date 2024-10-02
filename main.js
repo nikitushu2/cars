@@ -30,10 +30,12 @@ class Car {
 
 }
 
+// display a message
 const displayMessage = (message, type = "success") => {
     const messageElement = document.querySelector("#message");
     messageElement.textContent = message;
     messageElement.className = type;
+    // clear the message after an interval
     setTimeout(() => {
         messageElement.textContent = "";
         messageElement.className = "";
@@ -70,6 +72,7 @@ const addCar = (e) => {
         addCarForm.reset();
         cars.push(newCar);
 
+        // add item to local storage
         localStorage.setItem('cars', JSON.stringify(cars));
 
         displayTable();
@@ -80,6 +83,7 @@ const addCar = (e) => {
     }
 };
 
+// load cars from local storage
 const loadCarsFromLocalStorage = () => {
     const storedCars = localStorage.getItem('cars');
     if (storedCars) {
@@ -122,6 +126,7 @@ const displayTable = () => {
     });
 };
 
+// delete a car
 const deleteCar = (index) => {
     cars.splice(index, 1);
     localStorage.setItem('cars', JSON.stringify(cars));

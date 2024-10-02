@@ -6,6 +6,7 @@ const searchCarForm = document.querySelector('#searchCar');
 const cars = [];
 
 class Car {
+    // initialize a car
     constructor(license, maker, model, owner, price, color) {
         this.license = license;
         this.maker = maker;
@@ -16,6 +17,7 @@ class Car {
     }
 }
 
+// add car to the list and table
 const addCar = (e) => {
     e.preventDefault();
 
@@ -26,20 +28,24 @@ const addCar = (e) => {
     const price = document.querySelector('#price').value.trim();
     const color = document.querySelector('#color').value;
 
+    // create a car instance
     const newCar = new Car(license, maker, model, owner, price, color);
 
+    // clear the form fields after submitting
     addCarForm.reset();
 
     cars.push(newCar)
     displayTable();
 }
 
+// constructs a table
 const displayTable = () => {
     const table = document.querySelector('#carsTable');
 
     table.innerHTML = table.rows[0].innerHTML;
 
     cars.forEach(car => {
+        // insert row at last position
         const row = table.insertRow(-1);
 
         Object.values(car).forEach(text => {
@@ -49,6 +55,7 @@ const displayTable = () => {
     })
 }
 
+// searches for the car based on plate
 const searchCar = (e) => {
     e.preventDefault();
     const searchInput = document.querySelector('#search').value;

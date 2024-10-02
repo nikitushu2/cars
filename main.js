@@ -6,6 +6,7 @@ const searchCarForm = document.querySelector("#searchCar");
 const cars = [];
 
 class Car {
+    // intialize a car
     constructor(license, maker, model, owner, price, color, year) {
         this.license = license;
         this.maker = maker;
@@ -16,11 +17,13 @@ class Car {
         this.year = parseInt(year);
     }
 
+    // calculate the age for the discount
     getCarAge() {
         const currentYear = new Date().getFullYear();
         return currentYear - this.year;
     }
 
+    // calculate the price
     getDiscountedPrice() {
         return this.getCarAge() > 10 ? this.price * 0.85 : this.price;
     }
@@ -31,6 +34,7 @@ class Car {
 
 }
 
+// add car to the list and display it in the table
 const addCar = (e) => {
     e.preventDefault();
 
@@ -42,6 +46,7 @@ const addCar = (e) => {
         const price = parseFloat(document.querySelector("#price").value.trim());
         const color = document.querySelector("#color").value.trim();
         const year = parseInt(document.querySelector("#year").value.trim());
+        // get a current year
         const currentYear = new Date().getFullYear();
 
         if (!license || !maker || !model || !owner || isNaN(price) || !color || isNaN(year)) {
@@ -66,6 +71,7 @@ const addCar = (e) => {
     }
 };
 
+// create a table
 const displayTable = () => {
     const table = document.querySelector("#carsTable");
 
@@ -91,7 +97,7 @@ const displayTable = () => {
     });
 };
 
-
+// search for a car
 const searchCar = (e) => {
     e.preventDefault();
     const searchInput = document.querySelector("#search").value.trim();
